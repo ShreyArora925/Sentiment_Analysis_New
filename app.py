@@ -14,7 +14,7 @@ def analyze():
     if not text:
         return jsonify({'error': 'No text provided'}), 400
     result = comprehend_service.analyze_sentiment(text)
-    sentiment = result['Sentiment']
+    sentiment = result['SentimentScore']
     return jsonify(sentiment)
 
 if __name__ == '__main__':
