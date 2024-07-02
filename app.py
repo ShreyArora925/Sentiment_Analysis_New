@@ -11,8 +11,11 @@ def index():
 @app.route('/analyze', methods=['POST'])
 def analyze():
     text = request.form['text']
+    if not text:
+        return jsonify({'error': 'No text provided'}), 400
     result = comprehend_service.analyze_sentiment(text)
-    return jsonify(result)
+    sentiment = result['Sentiment']
+    return jsonify(sentiment)
 
 if __name__ == '__main__':
     app.run(debug=True)
